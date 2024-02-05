@@ -8,6 +8,8 @@ struct node {
     struct node *NEXT;
 };
 
+
+
 void insertfront();
 void insertend();
 void deletefront();
