@@ -11,6 +11,7 @@ struct node {
 void insertfront();
 void insertend();
 void deletefront();
+void deleteend();
 void insertafter();
 void displayall();
 void search();
@@ -61,43 +62,45 @@ int main() {
 struct node *createnewnode() {
     struct node *p = (struct node *)malloc(sizeof(struct node));
     printf("\nEnter data: ");
-    scanf("%d", &p->data);fflush(stdin);
+    scanf("%d", &p->data);
     p->NEXT = NULL;
     return p;
 }
 
-void insertfront() {
-    struct node *p,*tmp; 
+void insertfront(){
+    struct node *p,*q; 
 	 p = createnewnode();
     if (HEAD == NULL) {
+        p->NEXT = q;
         HEAD = p;
-        p->NEXT = HEAD;
         return;
     }
-    else{
-    	tmp = HEAD;
-    	while(tmp->NEXT!=HEAD){
-    		tmp= tmp->NEXT;
-		}
-	
-    p->NEXT = HEAD;
+    q=HEAD;
+    while(q->NEXT!=HEAD){
+    	q = q->NEXT;
+	}	
+    p->NEXT = p;
     p->NEXT = HEAD;
     HEAD = p;
 }
-}
+
 
 void insertend() {
-    struct node *p = createnewnode();
+    struct node *p,*q;
+	p = createnewnode();
     if (HEAD == NULL) {
+    	p->NEXT =p;
         HEAD = p;
         return;
     }
 	
-    struct node *temp = HEAD;
-    while (temp->NEXT != NULL) {
-        temp = temp->NEXT;
+    q= HEAD;
+    while (q->NEXT!= NULL) {
+        q = q->NEXT;
+        p->NEXT = HEAD;
     }
-    temp->NEXT = p;
+    q->NEXT = p;
+    p->NEXT = HEAD;
 }
 
 void displayall() {
@@ -107,7 +110,7 @@ void displayall() {
         return;
     }
 
-    while (p->NEXT != NULL) {
+    while (p->NEXT!= NULL) {
         printf("%d\t", p->data);
         p = p->NEXT;
     }
@@ -115,64 +118,51 @@ void displayall() {
 }
 void deletefront()
 {
-	struct node*tmp;
+	struct node *tmp,*p;
 	if (HEAD==NULL)
 	{
 		printf("\nEmpty List!\n");
 		getch();
 		return;
 	}
-	tmp=HEAD;
-	HEAD=HEAD->NEXT;
-	free(tmp);
+	if(HEAD->NEXT==HEAD){
+		free(HEAD);
+		HEAD = NULL;
+	}
+	
+	while (tmp->NEXT !=NULL){
+	 	tmp=tmp->NEXT;
+	}
+	p=HEAD;
+	tmp->NEXT = HEAD->NEXT;
+	HEAD = HEAD->NEXT;
+	free(p);
+	
+	
 }
 
 void deleteend()
 {
-	struct node*p;
+	struct node *tmp,*p;
 	if (HEAD==NULL)
 	{
 		printf("\nEmpty List!\n");
 		getch();
 		return;
-	}else if(HEAD->NEXT==NULL)
-	{free(HEAD);
-	HEAD=NULL;
-	return;
 	}
-	else{
+	if(HEAD->NEXT==HEAD){
+		free(HEAD);
+		HEAD = NULL;
+	}
+	
+	while (p->NEXT->NEXT!=HEAD){
+	 	p=p->NEXT;
+	}
 	p=HEAD;
-	while(p->NEXT->NEXT != NULL)
-	{
-	p=p->NEXT;
-	}
-	free (p->NEXT);
-	p->NEXT=NULL;
-	}
+	free(p->NEXT);
+	p->NEXT = HEAD;
 	
 }
-
-void insertafter(int k){
-	struct node *tmp,*tmp1;
-	struct node *p = createnewnode();
-	
-	if(HEAD==NULL){
-		HEAD = p;
-		return;
-	}
-	tmp = HEAD;
-	while (tmp!=NULL){
-		if(tmp->data == k){
-			p->NEXT = tmp->NEXT;
-			tmp->NEXT = p;
-			return;
-		}
-		tmp1 = tmp;
-		tmp = tmp->NEXT;
-	}
-	tmp1->NEXT = p;
-}
-
 
 
 
