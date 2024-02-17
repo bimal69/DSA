@@ -72,7 +72,7 @@ struct node *createnewnode() {
 void insertfront(){
     struct node *p,*q; 
 	 p = createnewnode();
-    if (HEAD == NULL) {
+    if (HEAD == NULL){
         p->NEXT = q;
         HEAD = p;
         return;

@@ -25,7 +25,7 @@ int dequeue(){
 	res=queue[front];
 	if(front==rear){
 		front==-1;
-		rear==1;
+		rear==0;
 	}
 	else{
 		front++;
@@ -65,9 +65,9 @@ void main(){
 		printf("5.EXit\t\t\n");
 		printf("\n\nWhich operation?");
 		scanf("%c",&choice);
-		fflush(stdin);
+		
 		switch(choice){
-			case '1': printf("\nEnter a data number:\n");scanf("%d",&k);fflush(stdin); enqueue(k);break;
+			case '1': printf("\nEnter a data number:\n");scanf("%d",&k); enqueue(k);break;
 			case '2': res=dequeue();
 					if(res==-1){
 						printf("\n\nQueue is empty");
@@ -85,12 +85,14 @@ void main(){
 	}while (choice!='4');
 	
 }
-int isfull(){
-	return (front==-1&&rear==-1)?1:0;
+int isfull() {
+    return ((rear + 1) % SIZE == front);
 }
-int isempty(){
-	return (front==-1&&rear==-1);
+
+int isempty() {
+    return (front == -1 && rear == -1) ? 1 : 0;
 }
+
 
 
 

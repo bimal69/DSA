@@ -68,10 +68,10 @@ struct node *createnewnode() {
 void insertfront() {
     struct node *p = createnewnode();
     if (HEAD == NULL) {
-        HEAD = p;
+        HEAD = p;	
         return;
     }
-    p->NEXT = HEAD;
+    p ->NEXT = HEAD;
     HEAD = p;
 }
 
@@ -141,8 +141,11 @@ void deleteend()
 	
 }
 
-void insertafter(int k){
+void insertafter(){
 	struct node *tmp,*tmp1;
+	int k;
+	printf("Enter the number after which you want to add the next number: ");
+	scanf("%d",&k);
 	struct node *p = createnewnode();
 	
 	if(HEAD==NULL){
@@ -159,7 +162,7 @@ void insertafter(int k){
 		tmp1 = tmp;
 		tmp = tmp->NEXT;
 	}
-	tmp1->NEXT = p;
+	tmp1->NEXT = tmp;
 }
 
 

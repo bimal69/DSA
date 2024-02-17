@@ -61,7 +61,7 @@ void list(){
 	}
 	printf("\n\nStack contents: \n\n");
 	printf("\n-------------------------\n");
-	for (i=0;i>=top;i++){
+	for (i=0;i<=top;i++){
 		printf("\n%d", stack[i]);
 	}
 	printf("\n\n");getch();
