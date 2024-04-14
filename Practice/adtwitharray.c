@@ -13,7 +13,7 @@ int top = -1;
 int main(){
 	int res,k;
 	int choice;
-	stack = (int *)malloc(size * sizeof(int));
+	
 	do{
 		printf("\nStack Based on Array\n");
 	printf("1. PUSH\n");
@@ -24,11 +24,11 @@ int main(){
 	scanf("%d",&choice);
 	
 	switch(choice){
-		case 1: printf("Enter the number: ");scanf("%d",k);push(k);break;
+		case 1: push();break;
 		case 2: pop();break;
 		case 3: display();break;
 		case 4: printf("Bye/Bye");
-				return 0;free(stack);break;
+				free(stack);break;return 0;
 		default: printf("You have to choose one option");break;
 	}
 	}while(1);
@@ -36,13 +36,22 @@ int main(){
 	return 0;
 	
 }
-void push(int k){
-	
+void createnewstack(){
+	stack = (int *)malloc(size * sizeof(int));
+}
+void push(){
+	createnewstack();
+	int k;
+	printf("Enter the number: ");
+	scanf("%d",&k);
 	if(isfull()){
 		printf("Stack is full\n");
 		return;
 	}
-	stack[++top]=k;
+	else{
+		stack[++top]=k;
+	}
+	
 }
 void pop(){
 	if(top==-1){
@@ -60,7 +69,7 @@ void display(){
 		printf("Stack is empty");
 	}
 	else {
-		for(i=0;i<5;i++){
+		for(i=0;i<=top;i++){
 			printf("%d",stack[i]);
 		}
 	}

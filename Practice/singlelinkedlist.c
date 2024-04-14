@@ -43,10 +43,10 @@ void displayall(){
         printf("\nEmpty");
         return;
     }
-	while(p->NEXT!=NULL){
+	do{
 		printf("%d",p->data);
 		p=p->NEXT;
-	}
+	}while(p->NEXT!=NULL);
 	printf("%d",p->data);
 }
 void main(){
