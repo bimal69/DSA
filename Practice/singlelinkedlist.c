@@ -1,79 +1,55 @@
-#include <stdio.h>
-#include  <stdlib.h>
+#include <stdio.h>  
+#include <stdlib.h>  
+  
+// Singly Linked List structure  
+struct Node {  
+    int data;  
+    struct Node* next;  
+};  
+  
 
-struct node{
-	int data;
-	struct node *NEXT;
-};
-struct node *HEAD = NULL;
+struct Node* head = NULL;  
+  
 
-struct node *createnewnode(){
-	struct node *p = (struct node*) malloc(sizeof(struct node));
-	printf("\nEnter the data:");
-	scanf("%d",p->data);
-	p->NEXT = NULL;
-	return p;
-}
-void insertfront(){
-	struct node *p = createnewnode();
-	if(HEAD==NULL){
-		HEAD=p;
-		return;
-	}
-	p->NEXT=HEAD;
-	HEAD = p;
-}
-
-void insertend(){
-	struct node *p = createnewnode();
-	if(HEAD==NULL){
-		HEAD=p;
-		return;
-	}
-	struct node *tmp = HEAD;
-	p->NEXT = NULL;
-	while(tmp->NEXT!=NULL){
-		tmp=tmp->NEXT;
-	}
-	tmp->NEXT=p;
-}
-void displayall(){
-	struct node *p = HEAD;
-	if (p == NULL) {
-        printf("\nEmpty");
-        return;
-    }
-	do{
-		printf("%d",p->data);
-		p=p->NEXT;
-	}while(p->NEXT!=NULL);
-	printf("%d",p->data);
-}
-void main(){
-	int choice;
-	do{
-		
-		system("cls");
-		printf("1.\nInsert Front\n");
-		printf("2.\nInsert End\n");
-		printf("3.\nDisplay\n");
-		printf("0.\nEXIT\n");
-		printf("\nWhich choice:");
-		scanf("%d",&choice);
-		switch(choice){
-			case 1: insertfront();break;
-			case 2: insertend();break;
-			case 3: displayall();break;
-			case 0: exit(0);
-			default: printf("Invalid");
-		}	
-	}while(1);
-}getch();
-
-
-
-
-
-
-
-
+void insert(int value) {  
+    // Create a new node  
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));  
+    newNode->data = value;  
+    newNode->next = NULL;  
+  
+     
+    if (head == NULL) {  
+        head = newNode;  
+    } else {  
+          
+        struct Node* current = head;  
+        while (current->next != NULL) {  
+            current = current->next;  
+        }  
+       
+        current->next = newNode;  
+    }  
+}  
+  
+  
+void traverse() {  
+    struct Node* current = head;  
+    while (current != NULL) {  
+        printf("%d ", current->data);  
+        current = current->next;  
+    }  
+}  
+  
+int main() {  
+   
+    insert(10);  
+    insert(20);  
+    insert(30);  
+    insert(40);  
+  
+    
+    printf("List: ");  
+    traverse();  
+  
+    return 0;  
+}  

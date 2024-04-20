@@ -54,7 +54,7 @@ int main() {
                 printf("\nInvalid Choice! Please try again.");
         }
         getch();
-    } while (1);
+    } while (choice!=0);
 }
 
 struct node *createnewnode() {
@@ -132,7 +132,7 @@ void deleteend()
 	}
 	else{
 		p=HEAD;
-		while(p->NEXT->NEXT != NULL){
+		while(p->NEXT->NEXT!= NULL){
 		p=p->NEXT;
 	}
 		free (p->NEXT);
